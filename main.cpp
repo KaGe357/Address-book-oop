@@ -1,9 +1,12 @@
 #include <iostream>
+#include <vector>
+
+#include "AddressBook.h"
+
 
 using namespace std;
 
 int main()
 {
-    cout << "Hello world!" << endl;
-    return 0;
+    AddressBook addressBook;
 }
