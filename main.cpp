@@ -9,4 +9,6 @@ using namespace std;
 int main()
 {
     AddressBook addressBook;
+    addressBook.registerNewUser();
+    addressBook.printAllUsers();
 }
