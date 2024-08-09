@@ -1,16 +1,31 @@
 #include "AddressBook.h"
 #include <iterator>
+#include <fstream>
+#include <sstream>
 
+ AddressBook::AddressBook()
+{
+    userDataFileName="Users.txt";
+}
 
 void AddressBook::registerNewUser()
 {
     User user = giveNewUserData();
 
     users.push_back(user);
-    // dopiszUzytkownikaDoPliku(user);
+    AddressBook::appendUserToFile(user);
 
     cout << endl << "Konto zalozono pomyslnie" << endl << endl;
     system("pause");
+}
+
+bool AddressBook::isTheFileEmpty(fstream &textFile)
+{
+    textFile.seekg(0, ios::end);
+    if (textFile.tellg() == 0)
+        return true;
+    else
+        return false;
 }
 
 User AddressBook::giveNewUserData()
@@ -62,4 +77,45 @@ void AddressBook::printAllUsers()
         cout << users[i].getLogin() << endl;
         cout << users[i].getPassword() << endl;
     }
+}
+void AddressBook::appendUserToFile(User user)
+{
+    fstream textFile;
+    string userDataLine = "";
+    textFile.open(userDataFileName.c_str(), ios::app);
+
+    if (textFile.good() == true)
+    {
+        userDataLine = convertUserDataToSeparatedForFileSaves(user);
+
+        if (isTheFileEmpty(textFile) == true)
+        {
+            textFile << userDataLine;
+        }
+        else
+        {
+            textFile << endl << userDataLine ;
+        }
+    }
+    else
+        cout << "Nie udalo sie otworzyc pliku " << userDataFileName << " i zapisac w nim danych." << endl;
+    textFile.close();
+}
+string AddressBook::convertIntToString(int number)
+{
+    ostringstream ss;
+    ss << number;
+    string str = ss.str();
+    return str;
+}
+
+string AddressBook::convertUserDataToSeparatedForFileSaves(User user)
+{
+    string userDataLine;
+
+    userDataLine += convertIntToString(user.getId())+ '|';
+    userDataLine += user.getLogin() + '|';
+    userDataLine += user.getPassword() + '|';
+
+    return userDataLine;
 }
