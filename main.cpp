@@ -14,7 +14,5 @@ int main()
 
     addressBook.registerNewUser();
     addressBook.printAllUsers();
-    addressBook.registerNewUser();
-    addressBook.registerNewUser();
-    addressBook.printAllUsers();
+
 }

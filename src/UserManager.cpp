@@ -65,5 +65,5 @@ void UserManager::printAllUsers()
 
 void UserManager::loadUsersFromFileToVector()
 {
-    userFile.loadUsersFromFileToVector(users);
+    users = userFile.loadUsersFromFileToVector();
 }

@@ -22,7 +22,7 @@ class UserFile
 public:
     UserFile();
     void appendUserToFile(User user);
-    void loadUsersFromFileToVector(vector <User> &users);
+    vector <User> loadUsersFromFileToVector();
 
 
 };

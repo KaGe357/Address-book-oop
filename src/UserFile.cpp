@@ -4,10 +4,11 @@ UserFile::UserFile()
 {
     userDataFileName = "Users.txt";
 }
-void UserFile::loadUsersFromFileToVector(vector <User> &users)
+vector <User>  UserFile::loadUsersFromFileToVector()
  {
 
     User user;
+    vector <User> users;
     string userDataSeparatedWithVerticalLine = "";
 
 
@@ -20,9 +21,9 @@ void UserFile::loadUsersFromFileToVector(vector <User> &users)
             user = getUserData(userDataSeparatedWithVerticalLine);
             users.push_back(user);
         }
-
+textFile.close();
     }
-    textFile.close();
+    return users;
 }
 
 User UserFile::getUserData(string userDataSeparatedWithVerticalLine)
