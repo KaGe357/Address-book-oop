@@ -17,10 +17,12 @@ class UserFile
 
     bool isTheFileEmpty();
     string convertUserDataToSeparatedForFileSaves(User user);
+    User getUserData(string userDataSeparatedWithVerticalLine);
 
 public:
     UserFile();
     void appendUserToFile(User user);
+    void loadUsersFromFileToVector(vector <User> &users);
 
 
 };

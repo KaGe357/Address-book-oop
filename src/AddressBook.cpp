@@ -4,6 +4,10 @@
 #include <sstream>
 #include "UserManager.h"
 
+AddressBook::AddressBook()
+{
+    userManager.loadUsersFromFileToVector();
+}
 void AddressBook::registerNewUser()
 {
     userManager.registerNewUser();

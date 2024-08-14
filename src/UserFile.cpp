@@ -4,6 +4,59 @@ UserFile::UserFile()
 {
     userDataFileName = "Users.txt";
 }
+void UserFile::loadUsersFromFileToVector(vector <User> &users)
+ {
+
+    User user;
+    string userDataSeparatedWithVerticalLine = "";
+
+
+    textFile.open(userDataFileName.c_str(), ios::in);
+
+    if (textFile.good() == true)
+    {
+        while (getline(textFile, userDataSeparatedWithVerticalLine))
+        {
+            user = getUserData(userDataSeparatedWithVerticalLine);
+            users.push_back(user);
+        }
+
+    }
+    textFile.close();
+}
+
+User UserFile::getUserData(string userDataSeparatedWithVerticalLine)
+{
+    User user;
+    string singleUserData = "";
+    int singleUserDataNumber = 1;
+
+    for (int charPosition = 0; charPosition < userDataSeparatedWithVerticalLine.length(); charPosition++)
+    {
+        if (userDataSeparatedWithVerticalLine[charPosition] != '|')
+        {
+            singleUserData += userDataSeparatedWithVerticalLine[charPosition];
+        }
+        else
+        {
+            switch(singleUserDataNumber)
+            {
+            case 1:
+                user.setId(atoi(singleUserData.c_str()));
+                break;
+            case 2:
+                user.setLogin(singleUserData);
+                break;
+            case 3:
+                user.setPassword(singleUserData);
+                break;
+            }
+            singleUserData = "";
+            singleUserDataNumber++;
+        }
+    }
+    return user;
+}
 
 string UserFile::convertUserDataToSeparatedForFileSaves(User user)
 {

@@ -25,10 +25,9 @@ class UserManager
 
 
 public:
-
     void registerNewUser();
     void printAllUsers();
-
+   void loadUsersFromFileToVector();
 
 };
 #endif
