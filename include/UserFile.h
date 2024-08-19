@@ -12,7 +12,7 @@ using namespace std;
 
 class UserFile
 {
-    string userDataFileName;
+    const string userDataFileName;
     fstream textFile;
 
     bool isTheFileEmpty();
