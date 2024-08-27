@@ -3,10 +3,6 @@
 
 #include <iostream>
 #include <vector>
-#include <windows.h>
-#include <fstream>
-#include <sstream>
-
 #include "User.h"
 #include "UserFile.h"
 
@@ -27,7 +23,8 @@ class UserManager
 public:
     void registerNewUser();
     void printAllUsers();
-   void loadUsersFromFileToVector();
+    void loadUsersFromFileToVector();
+    int loginUser();
 
 };
 #endif

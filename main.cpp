@@ -6,13 +6,19 @@
 #include "AddressBook.h"
 
 
-using namespace std;
+using namespace std ;
 
 int main()
 {
+
     AddressBook addressBook;
 
-    addressBook.registerNewUser();
-    addressBook.printAllUsers();
+//   addressBook.registerNewUser();
+    //  addressBook.printAllUsers();
+
+
+       addressBook.loginUser();
+   addressBook.registerNewContact();
+    addressBook.printAllContacts();
 
 }

@@ -1,9 +1,14 @@
 #include "UserFile.h"
 
-UserFile::UserFile():userDataFileName("Users.txt"){}
-vector <User>  UserFile::loadUsersFromFileToVector()
- {
+UserFile::UserFile():userDataFileName("Users.txt") {}
 
+
+
+
+
+vector <User>  UserFile::loadUsersFromFileToVector()
+{
+    fstream textFile;
     User user;
     vector <User> users;
     string userDataSeparatedWithVerticalLine = "";
@@ -18,7 +23,7 @@ vector <User>  UserFile::loadUsersFromFileToVector()
             user = getUserData(userDataSeparatedWithVerticalLine);
             users.push_back(user);
         }
-textFile.close();
+        textFile.close();
     }
     return users;
 }
@@ -59,8 +64,9 @@ User UserFile::getUserData(string userDataSeparatedWithVerticalLine)
 string UserFile::convertUserDataToSeparatedForFileSaves(User user)
 {
     string userDataLine;
+    AdditionalMethods am;
 
-    userDataLine += AdditionalMethods::convertIntToString(user.getId())+ '|';
+    userDataLine += am.convertIntToString(user.getId())+ '|';
     userDataLine += user.getLogin() + '|';
     userDataLine += user.getPassword() + '|';
 
@@ -94,6 +100,8 @@ void UserFile::appendUserToFile(User user)
 
 bool UserFile::isTheFileEmpty()
 {
+    fstream textFile;
+    textFile.open(userDataFileName.c_str(), ios::in);
     textFile.seekg(0, ios::end);
     if (textFile.tellg() == 0)
         return true;

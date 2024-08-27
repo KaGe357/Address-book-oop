@@ -4,12 +4,17 @@
 #include <iostream>
 #include <sstream>
 
-using namespace std;
+using namespace std ;
 
 class AdditionalMethods
 {
 public:
-    static string convertIntToString(int number);
+    string convertIntToString(int number);
+    string getNumber(string tekst, int pozycjaZnaku);
+    int getContactIdFromVerticalLineSeparatedDatas(string daneJednegoAdresataOddzielonePionowymiKreskami);
+    string getLineFromUser();
+
+
 };
 
 #endif
