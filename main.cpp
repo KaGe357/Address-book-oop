@@ -13,12 +13,9 @@ int main()
 
     AddressBook addressBook;
 
-//   addressBook.registerNewUser();
-    //  addressBook.printAllUsers();
 
-
-       addressBook.loginUser();
-   addressBook.registerNewContact();
+    addressBook.loginUser();
+    addressBook.registerNewContact();
     addressBook.printAllContacts();
 
 }

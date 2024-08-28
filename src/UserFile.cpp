@@ -3,9 +3,6 @@
 UserFile::UserFile():userDataFileName("Users.txt") {}
 
 
-
-
-
 vector <User>  UserFile::loadUsersFromFileToVector()
 {
     fstream textFile;

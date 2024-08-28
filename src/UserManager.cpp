@@ -34,7 +34,7 @@ int UserManager::loginUser()
                     cout << endl << "Zalogowales sie." << endl << endl;
                     system("pause");
                     id = users[i].getId();
-                           cout <<"UserManager::loginUser()" << id <<endl;
+                    cout <<"UserManager::loginUser()" << id <<endl;
                     return id;
                 }
             }

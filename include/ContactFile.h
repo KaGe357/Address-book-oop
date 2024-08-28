@@ -10,7 +10,8 @@
 #include "AdditionalMethods.h"
 
 using namespace std;
-class ContactFile {
+class ContactFile
+{
 private:
     const  string contactsDataFileName;
     int lastUsedId = 0;

@@ -19,7 +19,8 @@ void ContactManager::printContactData(Contact contact)
 }
 
 
-int ContactManager::loadContactsForUser(int loggedUserId) {
+int ContactManager::loadContactsForUser(int loggedUserId)
+{
     contacts = contactFile.loadContactsForUser(loggedUserId);
     lastUsedId = contactFile.getLastUsedId();
     return lastUsedId;
@@ -27,30 +28,31 @@ int ContactManager::loadContactsForUser(int loggedUserId) {
 
 
 
-Contact ContactManager::giveNewContactData(int loggedUserId) {
+Contact ContactManager::giveNewContactData(int loggedUserId)
+{
     Contact contact;
-    contact.setId(++lastUsedId);  // Inkremetuj ID przed przypisaniem
+    contact.setId(++lastUsedId);
     contact.setUserId(loggedUserId);
 
     string temp;
-      cout << "Podaj imie: ";
-      getline(cin, temp);
+    cout << "Podaj imie: ";
+    getline(cin, temp);
     contact.setName(temp);
 
-      cout << "Podaj nazwisko: ";
-      getline(cin, temp);
+    cout << "Podaj nazwisko: ";
+    getline(cin, temp);
     contact.setLastName(temp);
 
-      cout << "Podaj numer telefonu: ";
-      getline(cin, temp);
+    cout << "Podaj numer telefonu: ";
+    getline(cin, temp);
     contact.setPhoneNum(temp);
 
-      cout << "Podaj email: ";
-      getline(cin, temp);
+    cout << "Podaj email: ";
+    getline(cin, temp);
     contact.setEmail(temp);
 
-      cout << "Podaj adres: ";
-      getline(cin, temp);
+    cout << "Podaj adres: ";
+    getline(cin, temp);
     contact.setHomeAddress(temp);
 
     return contact;
@@ -82,11 +84,10 @@ void ContactManager::printAllContacts()
 
 int ContactManager::registerNewContact(int loggedUser)
 {
-  //ContactFile contactFile(contactFile);
     system("cls");
     cout << " >>> DODAWANIE NOWEGO ADRESATA <<<" << endl << endl;
     contact = giveNewContactData(loggedUser);
-       cout <<"ContactManager::registerNewContact " << loggedUser <<endl;
+    cout <<"ContactManager::registerNewContact " << loggedUser <<endl;
     contacts.push_back(contact);
     contactFile.appendContactToFile(contact);
 
