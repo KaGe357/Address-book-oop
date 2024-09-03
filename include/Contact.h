@@ -21,7 +21,7 @@ public:
     Contact(int id, int userId, const std::string& name, const std::string& lastName,
             const std::string& phoneNumber, const std::string& email, const std::string& homeAddress)
         : id(id), userId(userId), name(name), lastName(lastName),
-          phoneNum(phoneNumber), email(email), homeAddress(homeAddress) {}  // Poprawka
+          phoneNum(phoneNumber), email(email), homeAddress(homeAddress) {}
     Contact();
 
     void setId(int newId);

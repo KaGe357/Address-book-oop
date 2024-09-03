@@ -1,6 +1,5 @@
 #include "UserFile.h"
 
-UserFile::UserFile():userDataFileName("Users.txt") {}
 
 
 vector <User>  UserFile::loadUsersFromFileToVector()
@@ -11,7 +10,7 @@ vector <User>  UserFile::loadUsersFromFileToVector()
     string userDataSeparatedWithVerticalLine = "";
 
 
-    textFile.open(userDataFileName.c_str(), ios::in);
+    textFile.open(USER_DATA_FILENAME.c_str(), ios::in);
 
     if (textFile.good() == true)
     {
@@ -74,7 +73,7 @@ void UserFile::appendUserToFile(User user)
 {
     fstream textFile;
     string userDataLine = "";
-    textFile.open(userDataFileName.c_str(), ios::app);
+    textFile.open(USER_DATA_FILENAME.c_str(), ios::app);
 
     if (textFile.good() == true)
     {
@@ -90,7 +89,7 @@ void UserFile::appendUserToFile(User user)
         }
     }
     else
-        cout << "Nie udalo sie otworzyc pliku " << userDataFileName << " i zapisac w nim danych." << endl;
+        cout << "Nie udalo sie otworzyc pliku " << USER_DATA_FILENAME << " i zapisac w nim danych." << endl;
     textFile.close();
 }
 
@@ -98,7 +97,7 @@ void UserFile::appendUserToFile(User user)
 bool UserFile::isTheFileEmpty()
 {
     fstream textFile;
-    textFile.open(userDataFileName.c_str(), ios::in);
+    textFile.open(USER_DATA_FILENAME.c_str(), ios::in);
     textFile.seekg(0, ios::end);
     if (textFile.tellg() == 0)
         return true;

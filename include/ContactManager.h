@@ -12,23 +12,26 @@ using namespace std;
 class ContactManager
 {
     int loggedUserId;
+    const int LOGGED_USER_ID;
     int lastUsedId;
     vector<Contact>contacts;
     ContactFile contactFile;
-    Contact contact;
 
 
     Contact giveNewUserId();
     int getNewUserId();
-    Contact giveNewContactData(int loggedUserId);
+    Contact giveNewContactData();
     void printContactData(Contact contact);
 
 public:
-    ContactManager();
-    int registerNewContact(int loggedUserId);
+    ContactManager(string contactFileName, int loggedUserId) : contactFile(contactFileName, contactFile.getLastUsedId()), LOGGED_USER_ID(loggedUserId)
+    {
+        contacts = contactFile.loadContactsForUser(LOGGED_USER_ID);
+    }
+    void registerNewContact();
     void printAllContacts();
-    int loadContactsForUser(int loggedUserId);
-    void setLoggedUserId(int newId);
+   // int loadContactsForUser(int loggedUserId);
+    //void setLoggedUserId(int newId);
     int getLoggedUserId();
 
 

@@ -11,7 +11,7 @@ using namespace std ;
 
 class UserFile
 {
-    const string userDataFileName;
+    const string USER_DATA_FILENAME;
 
     bool isTheFileEmpty();
     string convertUserDataToSeparatedForFileSaves(User user);
@@ -19,7 +19,7 @@ class UserFile
     string convertIntToStr(int number);
 
 public:
-    UserFile();
+    UserFile(string userDataFilename) : USER_DATA_FILENAME(userDataFilename){};
     void appendUserToFile(User user);
     vector <User> loadUsersFromFileToVector();
 

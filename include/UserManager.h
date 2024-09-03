@@ -19,12 +19,18 @@ class UserManager
     bool isThereALogin(string login);
     UserFile userFile;
 
-
 public:
+    UserManager(string userDataFilename) : userFile(userDataFilename)
+    {
+        loggedUserId=0;
+        users = userFile.loadUsersFromFileToVector();
+    }
     void registerNewUser();
     void printAllUsers();
-    void loadUsersFromFileToVector();
     int loginUser();
+    bool isAUserLogged();
+    int getLoggedUserId();
+    void logoutUser();
 
 };
 #endif

@@ -4,9 +4,7 @@
 #include "ContactFile.h"
 using namespace std;
 
-ContactManager::ContactManager()
-    : loggedUserId(0), lastUsedId(0), contactFile("Contacts.txt"), contact() {}
-
+//ContactManager::ContactManager(contactFile.CONTACTS_DATA_FILENAME, getLoggedUserId()){};
 
 void ContactManager::printContactData(Contact contact)
 {
@@ -18,21 +16,21 @@ void ContactManager::printContactData(Contact contact)
     cout << "Adres:              " << contact.getHomeAddress() << endl;
 }
 
-
+/*
 int ContactManager::loadContactsForUser(int loggedUserId)
 {
     contacts = contactFile.loadContactsForUser(loggedUserId);
     lastUsedId = contactFile.getLastUsedId();
     return lastUsedId;
 }
+*/
 
 
-
-Contact ContactManager::giveNewContactData(int loggedUserId)
+Contact ContactManager::giveNewContactData()
 {
     Contact contact;
-    contact.setId(++lastUsedId);
-    contact.setUserId(loggedUserId);
+    contact.setId(contactFile.getLastUsedId()+1);
+    contact.setUserId(LOGGED_USER_ID);
 
     string temp;
     cout << "Podaj imie: ";
@@ -82,23 +80,27 @@ void ContactManager::printAllContacts()
     system("pause");
 }
 
-int ContactManager::registerNewContact(int loggedUser)
+void ContactManager::registerNewContact()
 {
+    Contact contact;
     system("cls");
     cout << " >>> DODAWANIE NOWEGO ADRESATA <<<" << endl << endl;
-    contact = giveNewContactData(loggedUser);
-    cout <<"ContactManager::registerNewContact " << loggedUser <<endl;
+    contact = giveNewContactData();
     contacts.push_back(contact);
-    contactFile.appendContactToFile(contact);
 
-    return ++lastUsedId;
+    if(contactFile.appendContactToFile(contact))
+        cout << "Nowy adresat zostal dodany"<<endl;
+    else
+        cerr << "Blad. Nie udalo sie dodac nowego adresata do pliku.";
+    system("pause");
+
 }
-
+/*
 void ContactManager::setLoggedUserId(int newId)
 {
     if(newId>=0) loggedUserId=newId;
 }
-
+*/
 int ContactManager::getLoggedUserId()
 {
     return loggedUserId;

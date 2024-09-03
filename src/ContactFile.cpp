@@ -6,31 +6,35 @@ int ContactFile::getLastUsedId() const
     return lastUsedId;
 }
 
-void ContactFile::appendContactToFile(const Contact& contact)
+bool ContactFile::appendContactToFile(const Contact& contact)
 {
-    ifstream fileCheck(contactsDataFileName);  // U¿ycie ifstream do sprawdzenia pustego pliku
-    ofstream textFile(contactsDataFileName, ios::out | ios::app);
+    ifstream fileCheck(CONTACTS_DATA_FILENAME);  // Uzycie ifstream do sprawdzenia pustego pliku
+    ofstream textFile(CONTACTS_DATA_FILENAME, ios::out | ios::app);
 
     if (textFile)
     {
         if (isFileEmpty(fileCheck))    // Sprawdzenie pustego pliku
         {
             textFile << formatContactData(contact);
+            lastUsedId++;
         }
         else
         {
             textFile << "\n" << formatContactData(contact);
+            lastUsedId++;
         }
+        return true;
     }
     else
     {
         cerr << "Nie udalo sie otworzyc pliku do zapisu.\n";
+        return false;
     }
 }
 
 vector<Contact> ContactFile::loadContactsForUser(int userId)
 {
-    ifstream textFile(contactsDataFileName);
+    ifstream textFile(CONTACTS_DATA_FILENAME);
     vector<Contact> userContacts;
     Contact contact;
     int maxId = 0;
@@ -107,7 +111,7 @@ bool ContactFile::isFileEmpty(ifstream& file) const
 bool ContactFile::isFileEmpty(ofstream& file) const
 {
 
-    string filePath = contactsDataFileName;
+    string filePath = CONTACTS_DATA_FILENAME;
     ifstream tempFile(filePath);
     return tempFile.peek() == ifstream::traits_type::eof();
 }

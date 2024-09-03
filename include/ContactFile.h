@@ -13,7 +13,8 @@ using namespace std;
 class ContactFile
 {
 private:
-    const  string contactsDataFileName;
+
+    const  string CONTACTS_DATA_FILENAME;
     int lastUsedId = 0;
 
     int extractContactId(const string& contactData) const;
@@ -23,9 +24,9 @@ private:
     bool isFileEmpty(ofstream& file) const;
 
 public:
-    explicit ContactFile(const string& fileName) : contactsDataFileName(fileName) {}
+    explicit ContactFile(const string& fileName, int lastUsedContactId) : CONTACTS_DATA_FILENAME(fileName), lastUsedId(lastUsedContactId) {};
     vector<Contact> loadContactsForUser(int userId);
-    void appendContactToFile(const Contact& contact);
+    bool appendContactToFile(const Contact& contact);
     int getLastUsedId() const;
 };
 

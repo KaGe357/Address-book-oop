@@ -1,6 +1,7 @@
 #include "UserManager.h"
 
 
+
 void UserManager::registerNewUser()
 {
     User user = giveNewUserData();
@@ -34,7 +35,6 @@ int UserManager::loginUser()
                     cout << endl << "Zalogowales sie." << endl << endl;
                     system("pause");
                     id = users[i].getId();
-                    cout <<"UserManager::loginUser()" << id <<endl;
                     return id;
                 }
             }
@@ -99,7 +99,21 @@ void UserManager::printAllUsers()
     }
 }
 
-void UserManager::loadUsersFromFileToVector()
+
+
+int UserManager::getLoggedUserId()
 {
-    users = userFile.loadUsersFromFileToVector();
+    return loggedUserId;
+}
+
+bool UserManager::isAUserLogged()
+{
+    if(getLoggedUserId()>0)
+        return true;
+    else
+        return false;
+}
+void UserManager::logoutUser()
+{
+    loggedUserId=0;
 }
