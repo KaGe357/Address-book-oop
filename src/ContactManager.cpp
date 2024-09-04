@@ -198,7 +198,7 @@ void ContactManager::removeContact(int idToRemove)
     // Wypisanie danych kontaktu przed usuniêciem
     cout << "Znaleziono kontakt: " << endl;
     cout << "ID: " << contacts[i].getId() << endl;
-    cout << "Imiê: " << contacts[i].getName() << endl;
+    cout << "Imie: " << contacts[i].getName() << endl;
     cout << "Nazwisko: " << contacts[i].getLastName() << endl;
     cout << "Numer telefonu: " << contacts[i].getPhoneNum() << endl;
     cout << "Adres e-mail: " << contacts[i].getEmail() << endl;
@@ -217,7 +217,7 @@ void ContactManager::removeContact(int idToRemove)
         // Zaktualizowanie pliku po usuniêciu kontaktu
         contactFile.updateContactInFile(contacts, idToRemove);
 
-        cout << "Kontakt zosta³ usuniêty." << endl;
+        cout << "Kontakt zostal usuniety." << endl;
     }
     else
     {
@@ -226,7 +226,7 @@ void ContactManager::removeContact(int idToRemove)
 }
 void ContactManager::searchContactsByName()
 {
-    cout << "Podaj imiê do wyszukania (lub wpisz 'exit' aby anulowaæ): ";
+    cout << "Podaj imie do wyszukania (lub wpisz 'exit' aby anulowac): ";
     string name;
     cin >> name;
 
@@ -246,7 +246,7 @@ void ContactManager::searchContactsByName()
         if (am.toLowerCase(contact.getName()) == name)
         {
             cout << "ID: " << contact.getId() << endl;
-            cout << "Imiê: " << contact.getName() << endl;
+            cout << "Imie: " << contact.getName() << endl;
             cout << "Nazwisko: " << contact.getLastName() << endl;
             cout << "Numer telefonu: " << contact.getPhoneNum() << endl;
             cout << "Adres e-mail: " << contact.getEmail() << endl;
@@ -258,7 +258,7 @@ void ContactManager::searchContactsByName()
 
     if (!found)
     {
-        cout << "Brak kontaktów o podanym imieniu." << endl;
+        cout << "Brak kontaktow o podanym imieniu." << endl;
     }
 }
 void ContactManager::searchContactsByLastName()
@@ -283,7 +283,7 @@ void ContactManager::searchContactsByLastName()
         if (am.toLowerCase(contact.getLastName()) == lastName)
         {
             cout << "ID: " << contact.getId() << endl;
-            cout << "Imiê: " << contact.getName() << endl;
+            cout << "Imie: " << contact.getName() << endl;
             cout << "Nazwisko: " << contact.getLastName() << endl;
             cout << "Numer telefonu: " << contact.getPhoneNum() << endl;
             cout << "Adres e-mail: " << contact.getEmail() << endl;
@@ -295,7 +295,7 @@ void ContactManager::searchContactsByLastName()
 
     if (!found)
     {
-        cout << "Brak kontaktów o podanym nazwisku." << endl;
+        cout << "Brak kontaktow o podanym nazwisku." << endl;
     }
 }
 
