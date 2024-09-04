@@ -46,19 +46,19 @@ int main()
                 addressBook.registerNewContact();
                 break;
             case 2:
-                // addressBook.searchByName();
+                addressBook.searchContactByName();
                 break;
             case 3:
-                // addressBook.searchByLastName();
+                 addressBook.searchContactByLastName();
                 break;
             case 4:
                 addressBook.printAllContacts();
                 break;
             case 5:
-                // addressBook.removeContact();
+                 addressBook.removeContact();
                 break;
             case 6:
-                // addressBook.modifyContactData();
+                 addressBook.modifyContact();
                 break;
             case 7:
                 // addressBook.changePassword();

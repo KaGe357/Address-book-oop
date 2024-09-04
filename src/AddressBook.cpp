@@ -32,7 +32,7 @@ void AddressBook::registerNewContact()
 }
 int AddressBook::loginUser()
 {
-     loggedId=userManager.loginUser();
+    loggedId=userManager.loginUser();
     if(loggedId!=0)
     {
         contactManager = new ContactManager(CONTACT_DATA_FILENAME, loggedId);
@@ -67,7 +67,7 @@ void AddressBook::printMainMenu()
 }
 void AddressBook::printLoggedUserMenu()
 {
-        system("cls");
+    system("cls");
     cout << " >>> MENU UZYTKOWNIKA <<<" << endl;
     cout << "---------------------------" << endl;
     cout << "1. Dodaj adresata" << endl;
@@ -83,4 +83,63 @@ void AddressBook::printLoggedUserMenu()
     cout << "Twoj wybor: ";
 
 
+}
+void AddressBook::modifyContact()
+{
+
+    if (loggedId != 0)
+    {
+        int contactId;
+        cout << "Podaj ID kontaktu by edytowaæ" << endl;
+        cin >> contactId;
+        cin.sync();
+        contactManager->modifyContact(contactId);
     }
+    else
+    {
+        cout << "Musisz byc zalogowany, aby edytowac kontakt." << endl;
+    }
+}
+void AddressBook::removeContact()
+{
+
+    if (loggedId != 0)
+    {
+        int contactId;
+        cout << "Podaj ID kontaktu by usunac" << endl;
+        cin >> contactId;
+        cin.sync();
+        contactManager->removeContact(contactId);
+    }
+    else
+    {
+        cout << "Musisz byc zalogowany, aby edytowac kontakt." << endl;
+    }
+}
+void AddressBook::searchContactByName()
+{
+    if (loggedId != 0)
+    {
+        contactManager->searchContactsByName();
+        system("pause");
+    }
+    else
+    {
+        cout << "Musisz byc zalogowany, aby wyszukiwac kontakty." << endl;
+        system("pause");
+    }
+}
+
+void AddressBook::searchContactByLastName()
+{
+    if (loggedId != 0)
+    {
+        contactManager->searchContactsByLastName();
+        system("pause");
+    }
+    else
+    {
+        cout << "Musisz byc zalogowany, aby wyszukiwac kontakty." << endl;
+        system("pause");
+    }
+}

@@ -13,6 +13,7 @@ public:
     string getNumber(string tekst, int pozycjaZnaku);
     int getContactIdFromVerticalLineSeparatedDatas(string daneJednegoAdresataOddzielonePionowymiKreskami);
     string getLineFromUser();
+    string toLowerCase(const string& str);
 
 
 };

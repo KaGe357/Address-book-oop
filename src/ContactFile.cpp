@@ -13,7 +13,7 @@ bool ContactFile::appendContactToFile(const Contact& contact)
 
     if (textFile)
     {
-        if (isFileEmpty(fileCheck))    // Sprawdzenie pustego pliku
+        if (TextFile::isFileEmpty(fileCheck))
         {
             textFile << formatContactData(contact);
             lastUsedId++;
@@ -102,16 +102,45 @@ string ContactFile::formatContactData(const Contact& contact) const
     return stream.str();
 }
 
-
-bool ContactFile::isFileEmpty(ifstream& file) const
+void ContactFile::updateContactInFile(const vector<Contact>& contacts, int editedContactId)
 {
-    return file.peek() == ifstream::traits_type::eof();
+    ifstream inputFile(CONTACTS_DATA_FILENAME);
+    ofstream tempFile("temp.txt");
+
+    if (!inputFile.is_open() || !tempFile.is_open()) {
+        cerr << "Nie mo¿na otworzyæ pliku!" << endl;
+        return;
+    }
+
+    string line;
+    bool contactFound = false;
+
+    while (getline(inputFile, line)) {
+        int currentId = extractContactId(line);
+
+        if (currentId == editedContactId) {
+            // Przepisanie zmodyfikowanego kontaktu z wektora
+            for (const auto& contact : contacts) {
+                if (contact.getId() == editedContactId) {
+                    tempFile << formatContactData(contact) << endl;
+                    contactFound = true;
+                    break;
+                }
+            }
+        } else {
+            // Przepisanie oryginalnej linii
+            tempFile << line << endl;
+        }
+    }
+
+    inputFile.close();
+    tempFile.close();
+
+    remove(CONTACTS_DATA_FILENAME.c_str());
+    rename("temp.txt", CONTACTS_DATA_FILENAME.c_str());
+
+    if (!contactFound) {
+        cerr << "Kontakt z podanym ID nie zosta³ znaleziony!" << endl;
+    }
 }
 
-bool ContactFile::isFileEmpty(ofstream& file) const
-{
-
-    string filePath = CONTACTS_DATA_FILENAME;
-    ifstream tempFile(filePath);
-    return tempFile.peek() == ifstream::traits_type::eof();
-}

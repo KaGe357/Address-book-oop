@@ -1,5 +1,6 @@
 #include "AdditionalMethods.h"
-
+#include <algorithm>
+#include <cctype>
 string AdditionalMethods::getLineFromUser()
 {
     string wejscie = "";
@@ -30,4 +31,12 @@ int AdditionalMethods::getContactIdFromVerticalLineSeparatedDatas(string contact
     int pozycjaRozpoczeciaIdAdresata = 0;
     int idAdresata = stoi(getNumber(contactDataSeparatedWithVerticalLine, pozycjaRozpoczeciaIdAdresata));
     return idAdresata;
+}
+
+
+
+string AdditionalMethods::toLowerCase(const string& str) {
+    string lowerStr = str;
+    transform(lowerStr.begin(), lowerStr.end(), lowerStr.begin(), ::tolower);
+    return lowerStr;
 }

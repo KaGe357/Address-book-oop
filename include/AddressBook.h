@@ -38,6 +38,10 @@ public:
     void logoutUser();
     void printMainMenu();
     void printLoggedUserMenu();
+    void removeContact();
+    void modifyContact();
+    void searchContactByName();
+    void searchContactByLastName();
 
 };
 #endif

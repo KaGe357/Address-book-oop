@@ -11,6 +11,7 @@ using namespace std;
 
 class ContactManager
 {
+    AdditionalMethods am;
     int loggedUserId;
     const int LOGGED_USER_ID;
     int lastUsedId;
@@ -33,6 +34,10 @@ public:
    // int loadContactsForUser(int loggedUserId);
     //void setLoggedUserId(int newId);
     int getLoggedUserId();
+    void removeContact(int idToRemove);
+    void modifyContact(int idToModify);
+    void searchContactsByName();
+    void searchContactsByLastName();
 
 
 
